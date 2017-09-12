@@ -2,13 +2,18 @@ package com.example.jason.flickster;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 
 import com.loopj.android.http.AsyncHttpClient;
 import com.loopj.android.http.JsonHttpResponseHandler;
 
+import org.json.JSONArray;
+import org.json.JSONException;
 import org.json.JSONObject;
 
 import cz.msebera.android.httpclient.Header;
+
+import static android.icu.lang.UCharacter.GraphemeClusterBreak.L;
 
 public class MovieActivity extends AppCompatActivity {
 
@@ -23,7 +28,15 @@ public class MovieActivity extends AppCompatActivity {
         client.get(url, new JsonHttpResponseHandler() {
             @Override
             public void onSuccess(int statusCode, Header[] headers, JSONObject response) {
-                super.onSuccess(statusCode, headers, response);
+                JSONArray movieJsonResults = null;
+
+                try {
+                    movieJsonResults = response.getJSONArray("results");
+                    Log.d("DEBUG", movieJsonResults.toString());
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+
             }
 
             @Override
