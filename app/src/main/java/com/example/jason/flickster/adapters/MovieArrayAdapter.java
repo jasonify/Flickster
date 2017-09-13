@@ -13,6 +13,7 @@ import android.widget.TextView;
 
 import com.example.jason.flickster.R;
 import com.example.jason.flickster.models.Movie;
+import com.squareup.picasso.Picasso;
 
 import java.util.List;
 
@@ -45,6 +46,7 @@ public class MovieArrayAdapter extends ArrayAdapter<Movie> {
         tvTitle.setText(movie.getOriginalTitle());
         tvOverview.setText(movie.getOverview());
 
+        Picasso.with(getContext()).load(movie.getPosterPath()).into(ivImage);
 
         // check if existing view is getting reused
         return convertView;
