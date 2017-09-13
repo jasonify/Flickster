@@ -7,6 +7,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.EditText;
+import android.widget.ImageView;
 
 import com.example.jason.flickster.R;
 import com.example.jason.flickster.models.Movie;
@@ -32,6 +34,17 @@ public class MovieArrayAdapter extends ArrayAdapter<Movie> {
             LayoutInflater inflater  = LayoutInflater.from(getContext());
             convertView =  inflater.inflate(R.layout.item_movie, parent, false);
         }
+
+        ImageView ivImage =  (ImageView) convertView.findViewById(R.id.ivMovieImage);
+        ivImage.setImageResource(0);
+
+        EditText tvTitle = (EditText) convertView.findViewById(R.id.tvTitle);
+        EditText tvOverview = (EditText) convertView.findViewById(R.id.tvOverview);
+
+        tvTitle.setText(movie.getOriginalTitle());
+        tvOverview.setText(movie.getOverview());
+
+
         // check if existing view is getting reused
         return super.getView(position, convertView, parent);
     }
