@@ -7,7 +7,9 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.TextView;
 
 import com.example.jason.flickster.R;
 import com.example.jason.flickster.models.Movie;
@@ -37,11 +39,11 @@ public class MovieArrayAdapter extends ArrayAdapter<Movie> {
         ImageView ivImage =  (ImageView) convertView.findViewById(R.id.ivMovieImage);
         ivImage.setImageResource(0);
 
-//        TextView tvTitle = (TextView) convertView.findViewById(R.id.tvTitle);
-//        EditText tvOverview = (EditText) convertView.findViewById(R.id.tvOverview);
+        TextView tvTitle = (TextView) convertView.findViewById(R.id.tvTitle);
+        EditText tvOverview = (EditText) convertView.findViewById(R.id.tvOverview);
 
-//        tvTitle.setText(movie.getOriginalTitle());
-//        tvOverview.setText(movie.getOverview());
+        tvTitle.setText(movie.getOriginalTitle());
+        tvOverview.setText(movie.getOverview());
 
 
         // check if existing view is getting reused
