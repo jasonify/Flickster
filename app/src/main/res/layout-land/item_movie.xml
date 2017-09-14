@@ -23,7 +23,6 @@
         android:ems="10"
         android:inputType="textPersonName"
         tools:text="Captain America: Civil War"
-        android:layout_alignBottom="@+id/ivMovieImage"
         android:layout_toRightOf="@+id/ivMovieImage"
         android:layout_marginLeft="22dp"
         android:layout_marginStart="22dp"
