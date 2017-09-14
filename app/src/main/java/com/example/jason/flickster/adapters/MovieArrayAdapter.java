@@ -1,6 +1,7 @@
 package com.example.jason.flickster.adapters;
 
 import android.content.Context;
+import android.content.res.Configuration;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.view.LayoutInflater;
@@ -58,7 +59,14 @@ public class MovieArrayAdapter extends ArrayAdapter<Movie> {
         viewHolder.title.setText(movie.getOriginalTitle());
         viewHolder.overview.setText(movie.getOverview());
 
-        Picasso.with(getContext()).load(movie.getPosterPath()).into(viewHolder.movieImage);
+        int orientation = getContext().getResources().getConfiguration().orientation;
+        if (orientation == Configuration.ORIENTATION_PORTRAIT) {
+
+
+            Picasso.with(getContext()).load(movie.getPosterPath()).into(viewHolder.movieImage);
+        } else if (orientation == Configuration.ORIENTATION_LANDSCAPE) {
+
+        }
 
         // check if existing view is getting reused
         return convertView;
