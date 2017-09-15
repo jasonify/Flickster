@@ -62,11 +62,15 @@ public class MovieArrayAdapter extends ArrayAdapter<Movie> {
         if (orientation == Configuration.ORIENTATION_PORTRAIT) {
             Picasso.with(getContext()).load(movie.getPosterPath())
                     .fit().centerCrop()
-                    .placeholder(R.drawable.loadingsmall).into(viewHolder.movieImage);
+                    .placeholder(R.drawable.loadingsmall)
+                    .error(R.drawable.error)
+                    .into(viewHolder.movieImage);
         } else if (orientation == Configuration.ORIENTATION_LANDSCAPE) {
             Picasso.with(getContext()).load(movie.getBackgropPath())
                     .fit().centerCrop()
-                    .placeholder(R.drawable.loadingsmall).into(viewHolder.movieImage);
+                    .placeholder(R.drawable.loadingsmall)
+                    .error(R.drawable.error)
+                    .into(viewHolder.movieImage);
         }
 
         // check if existing view is getting reused
