@@ -1,5 +1,7 @@
 package com.example.jason.flickster.models;
 
+import android.util.Log;
+
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -27,6 +29,7 @@ public class Movie {
     String posterPath;
     String originalTitle;
     String overview;
+    Double rating;
 
     public String getBackgropPath() {
         return String.format("https://image.tmdb.org/t/p/w342/%s", backgropPath);
@@ -39,6 +42,8 @@ public class Movie {
         this.originalTitle = jsonObject.getString("original_title");
         this.overview = jsonObject.getString("overview");
         this.backgropPath = jsonObject.getString("backdrop_path");
+        this.rating =  jsonObject.getDouble("vote_average");
+        Log.d("rating.. ", Double.toString(rating));
     }
 
     public static ArrayList<Movie> fromJSONArray(JSONArray movies) {

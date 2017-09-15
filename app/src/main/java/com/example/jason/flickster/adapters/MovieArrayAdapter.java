@@ -91,4 +91,11 @@ public class MovieArrayAdapter extends ArrayAdapter<Movie> {
         // return 2;
         return super.getViewTypeCount();
     }
+
+    @Override
+    public int getItemViewType(int position) {
+        Movie movie = getItem(position);
+
+        return super.getItemViewType(position);
+    }
 }
