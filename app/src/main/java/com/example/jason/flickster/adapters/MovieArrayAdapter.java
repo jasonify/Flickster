@@ -22,6 +22,12 @@ import java.util.List;
  * Created by jason on 9/12/17.
  */
 
+
+// TODO Heterogenous views
+    // [ ] 2 view, one with a bg poster movies with > 5 stars (prop named: vote_average)
+    // [ ] create the layout type  with background
+
+
 public class MovieArrayAdapter extends ArrayAdapter<Movie> {
 
     private static class ViewHolder {
@@ -75,5 +81,14 @@ public class MovieArrayAdapter extends ArrayAdapter<Movie> {
 
         // check if existing view is getting reused
         return convertView;
+    }
+
+    // Heterogenous Views
+
+
+    @Override
+    public int getViewTypeCount() {
+        // return 2;
+        return super.getViewTypeCount();
     }
 }
