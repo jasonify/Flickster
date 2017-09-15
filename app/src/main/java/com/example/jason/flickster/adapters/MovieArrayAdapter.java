@@ -34,6 +34,8 @@ public class MovieArrayAdapter extends ArrayAdapter<Movie> {
         TextView title;
         TextView overview;
         ImageView movieImage;
+        ImageView postertImage;
+        int viewType;
 
         // TODO: viewholder for photo?
     }
@@ -47,16 +49,32 @@ public class MovieArrayAdapter extends ArrayAdapter<Movie> {
         Movie movie = getItem(position);
         ViewHolder viewHolder;
 
+        int viewType = getItemViewType(position);
         if(convertView == null) {
             viewHolder = new ViewHolder();
-            LayoutInflater inflater  = LayoutInflater.from(getContext());
-            convertView =  inflater.inflate(R.layout.item_movie, parent, false);
+
+            convertView = getInflatedLayoutForType(viewType);
             viewHolder.title = (TextView) convertView.findViewById(R.id.tvTitle);
             viewHolder.overview = (EditText) convertView.findViewById(R.id.tvOverview);
             viewHolder.movieImage =  (ImageView) convertView.findViewById(R.id.ivMovieImage);
+            viewHolder.viewType = viewType;
+
             convertView.setTag(viewHolder);
         } else {
             viewHolder = (ViewHolder) convertView.getTag();
+
+            // Check if convertView is of same type as we are loading now:
+            if (viewType != viewHolder.viewType) {
+                // Need to change out views:
+                convertView = getInflatedLayoutForType(viewType);
+                // TODO: refactor this is repeated code!
+                viewHolder.title = (TextView) convertView.findViewById(R.id.tvTitle);
+                viewHolder.overview = (EditText) convertView.findViewById(R.id.tvOverview);
+                viewHolder.movieImage =  (ImageView) convertView.findViewById(R.id.ivMovieImage);
+
+                viewHolder.viewType = viewType;
+                convertView.setTag(viewHolder);
+            }
         }
 
         viewHolder.movieImage.setImageResource(0);
@@ -72,7 +90,7 @@ public class MovieArrayAdapter extends ArrayAdapter<Movie> {
                     .error(R.drawable.error)
                     .into(viewHolder.movieImage);
         } else if (orientation == Configuration.ORIENTATION_LANDSCAPE) {
-            Picasso.with(getContext()).load(movie.getBackgropPath())
+            Picasso.with(getContext()).load(movie.getBackgroundPath())
                     .fit().centerCrop()
                     .placeholder(R.drawable.loadingsmall)
                     .error(R.drawable.error)
@@ -101,5 +119,17 @@ public class MovieArrayAdapter extends ArrayAdapter<Movie> {
             return 1;
         }
         // return super.getItemViewType(position);
+    }
+
+    private View getInflatedLayoutForType(int type) {
+        LayoutInflater inflater  = LayoutInflater.from(getContext());
+
+        if (type == 0 ) {
+            return inflater.inflate(R.layout.item_movie, null);
+        } else  if (type == 1) {
+            return inflater.inflate(R.layout.item_movie, null);
+        }
+
+        return null;
     }
 }
