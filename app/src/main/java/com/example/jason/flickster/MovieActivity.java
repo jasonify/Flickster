@@ -2,7 +2,6 @@ package com.example.jason.flickster;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
 import android.widget.ListView;
 
 import com.example.jason.flickster.adapters.MovieArrayAdapter;
@@ -45,13 +44,9 @@ public class MovieActivity extends AppCompatActivity {
                     movieJsonResults = response.getJSONArray("results");
                     movies.addAll(Movie.fromJSONArray(movieJsonResults));
                     movieAdapter.notifyDataSetChanged();
-
-
-                    Log.d("DEBUG", movies.toString());
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
-
             }
 
             @Override

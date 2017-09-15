@@ -54,8 +54,6 @@ public class MovieArrayAdapter extends ArrayAdapter<Movie> {
         }
 
         viewHolder.movieImage.setImageResource(0);
-
-
         viewHolder.title.setText(movie.getOriginalTitle());
         viewHolder.overview.setText(movie.getOverview());
 
@@ -65,8 +63,6 @@ public class MovieArrayAdapter extends ArrayAdapter<Movie> {
             Picasso.with(getContext()).load(movie.getPosterPath()).into(viewHolder.movieImage);
         } else if (orientation == Configuration.ORIENTATION_LANDSCAPE) {
             Picasso.with(getContext()).load(movie.getBackgropPath()).into(viewHolder.movieImage);
-
-
         }
 
         // check if existing view is getting reused
