@@ -54,5 +54,10 @@ public class MovieActivity extends AppCompatActivity {
                 super.onFailure(statusCode, headers, throwable, errorResponse);
             }
         });
+
+//        getSupportActionBar().setDisplayShowHomeEnabled(true);
+//        getSupportActionBar().setLogo(R.drawable.loadingsmall);
+//        getSupportActionBar().setDisplayUseLogoEnabled(true);
+
     }
 }
