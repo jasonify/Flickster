@@ -26,6 +26,10 @@ public class Movie {
         return overview;
     }
 
+    public Double getRating() {
+        return rating;
+    }
+
     String posterPath;
     String originalTitle;
     String overview;

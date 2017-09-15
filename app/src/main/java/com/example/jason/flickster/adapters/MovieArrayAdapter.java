@@ -95,7 +95,11 @@ public class MovieArrayAdapter extends ArrayAdapter<Movie> {
     @Override
     public int getItemViewType(int position) {
         Movie movie = getItem(position);
-
-        return super.getItemViewType(position);
+        if (movie.getRating() >= 5.0) {
+            return 0
+;        } else {
+            return 1;
+        }
+        // return super.getItemViewType(position);
     }
 }
