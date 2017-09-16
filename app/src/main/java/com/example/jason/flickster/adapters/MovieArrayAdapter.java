@@ -1,6 +1,9 @@
 package com.example.jason.flickster.adapters;
 
 import android.content.Context;
+import android.graphics.Bitmap;
+import android.graphics.drawable.BitmapDrawable;
+import android.graphics.drawable.Drawable;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.util.Log;
@@ -10,11 +13,13 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.example.jason.flickster.R;
 import com.example.jason.flickster.models.Movie;
 import com.squareup.picasso.Picasso;
+import com.squareup.picasso.Target;
 
 import java.util.List;
 
@@ -34,6 +39,7 @@ public class MovieArrayAdapter extends ArrayAdapter<Movie> {
         TextView title;
         TextView overview;
         ImageView movieImage;
+        RelativeLayout mainContainer;
         ImageView postertImage;
         int viewType;
 
@@ -58,11 +64,39 @@ public class MovieArrayAdapter extends ArrayAdapter<Movie> {
             viewHolder.overview = (EditText) convertView.findViewById(R.id.tvOverview);
             viewHolder.movieImage =  (ImageView) convertView.findViewById(R.id.ivMovieImage);
             viewHolder.postertImage = (ImageView) convertView.findViewById(R.id.ivPosterImage);
+            viewHolder.mainContainer = (RelativeLayout) convertView.findViewById(R.id.rlMainContainer);
             viewHolder.viewType = viewType;
 
             convertView.setTag(viewHolder);
         } else {
             viewHolder = (ViewHolder) convertView.getTag();
+        }
+
+        // https://stackoverflow.com/questions/30343980/how-to-set-background-image-to-activity-layout-using-picasso-library-in-android
+        if (viewHolder.mainContainer != null ) {
+             viewHolder.mainContainer.setBackgroundResource(R.drawable.error);
+
+            final ViewHolder viewHolderInner = viewHolder;
+
+
+            Target target = new Target() {
+                @Override
+                public void onBitmapLoaded(Bitmap bitmap, Picasso.LoadedFrom from) {
+                    //if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
+                    viewHolderInner.mainContainer.setBackground(new BitmapDrawable(getContext().getResources(), bitmap));
+                  // }
+                }
+
+                @Override
+                public void onBitmapFailed(final Drawable errorDrawable) {
+                }
+
+                @Override
+                public void onPrepareLoad(final Drawable placeHolderDrawable) {
+                }
+            };
+
+            Picasso.with(getContext()).load(movie.getBackgroundPath()).into(target);
         }
 
         if (viewHolder.title != null ) {
