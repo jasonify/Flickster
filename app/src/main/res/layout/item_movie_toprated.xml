@@ -5,6 +5,7 @@
 
     <ImageView
         android:id="@+id/ivPosterImage"
+        android:alpha="0.3"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
@@ -14,6 +15,18 @@
         android:layout_alignParentStart="true"
         android:layout_alignParentTop="true"
         app:srcCompat="@drawable/loadingsmall" />
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:background="#CCFF0000"
+        android:layout_alignParentTop="true"
+        android:visibility="visible">
+
+    </RelativeLayout>
+
 
     <EditText
         android:id="@+id/tvTitle"
@@ -43,14 +56,15 @@
         android:layout_alignParentEnd="true" />
 
     <ImageView
-        android:id="@+id/imageView3"
+        android:id="@+id/ivMovieImage"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_below="@+id/tvOverview"
         android:layout_marginLeft="25dp"
         android:layout_marginStart="25dp"
-        app:srcCompat="@mipmap/ic_launcher"
         android:layout_marginTop="30dp"
-        android:layout_below="@+id/tvOverview"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true" />
+        app:srcCompat="@mipmap/ic_launcher" />
+
 </RelativeLayout>
