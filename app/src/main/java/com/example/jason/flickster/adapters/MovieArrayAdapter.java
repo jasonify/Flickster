@@ -67,6 +67,8 @@ public class MovieArrayAdapter extends ArrayAdapter<Movie> {
             // Check if convertView is of same type as we are loading now:
             if (viewType != viewHolder.viewType) {
                 // Need to change out views:
+                viewHolder = new ViewHolder();
+
                 convertView = getInflatedLayoutForType(viewType);
                 // TODO: refactor this is repeated code!
                 viewHolder.title = (TextView) convertView.findViewById(R.id.tvTitle);
@@ -81,7 +83,7 @@ public class MovieArrayAdapter extends ArrayAdapter<Movie> {
         }
 
         if (viewHolder.title != null ) {
-            viewHolder.title.setText( Integer.toString(position) + movie.getOriginalTitle() );
+            viewHolder.title.setText( Integer.toString(position) +  " - " + movie.getOriginalTitle() );
         }
         if (viewHolder.overview != null) {
             viewHolder.overview.setText(movie.getOverview());
