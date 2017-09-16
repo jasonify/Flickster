@@ -1,9 +1,9 @@
 package com.example.jason.flickster.adapters;
 
 import android.content.Context;
-import android.content.res.Configuration;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -57,6 +57,7 @@ public class MovieArrayAdapter extends ArrayAdapter<Movie> {
             viewHolder.title = (TextView) convertView.findViewById(R.id.tvTitle);
             viewHolder.overview = (EditText) convertView.findViewById(R.id.tvOverview);
             viewHolder.movieImage =  (ImageView) convertView.findViewById(R.id.ivMovieImage);
+            viewHolder.postertImage = (ImageView) convertView.findViewById(R.id.ivPosterImage);
             viewHolder.viewType = viewType;
 
             convertView.setTag(viewHolder);
@@ -71,31 +72,59 @@ public class MovieArrayAdapter extends ArrayAdapter<Movie> {
                 viewHolder.title = (TextView) convertView.findViewById(R.id.tvTitle);
                 viewHolder.overview = (EditText) convertView.findViewById(R.id.tvOverview);
                 viewHolder.movieImage =  (ImageView) convertView.findViewById(R.id.ivMovieImage);
+                viewHolder.postertImage = (ImageView) convertView.findViewById(R.id.ivPosterImage);
+
 
                 viewHolder.viewType = viewType;
                 convertView.setTag(viewHolder);
             }
         }
 
-        viewHolder.movieImage.setImageResource(0);
-        viewHolder.title.setText(movie.getOriginalTitle());
-        viewHolder.overview.setText(movie.getOverview());
+        if (viewHolder.title != null ) {
+            viewHolder.title.setText(movie.getOriginalTitle());
+        }
+        if (viewHolder.overview != null) {
+            viewHolder.overview.setText(movie.getOverview());
+        }
 
-        // Loading different image depending on if landscape or portrait
-        int orientation = getContext().getResources().getConfiguration().orientation;
-        if (orientation == Configuration.ORIENTATION_PORTRAIT) {
+        if (   viewHolder.postertImage != null ) {
+            viewHolder.postertImage.setImageResource(0);
+
+            Picasso.with(getContext()).load(movie.getBackgroundPath())
+                    .fit().centerCrop()
+                    .placeholder(R.drawable.loadingsmall)
+                    .error(R.drawable.error)
+                    .into(viewHolder.postertImage);
+        }
+
+        if ( viewHolder.movieImage != null ) {
+            viewHolder.movieImage.setImageResource(0);
+
             Picasso.with(getContext()).load(movie.getPosterPath())
                     .fit().centerCrop()
                     .placeholder(R.drawable.loadingsmall)
                     .error(R.drawable.error)
                     .into(viewHolder.movieImage);
-        } else if (orientation == Configuration.ORIENTATION_LANDSCAPE) {
-            Picasso.with(getContext()).load(movie.getBackgroundPath())
-                    .fit().centerCrop()
-                    .placeholder(R.drawable.loadingsmall)
-                    .error(R.drawable.error)
-                    .into(viewHolder.movieImage);
         }
+
+
+
+
+        // Loading different image depending on if landscape or portrait
+//        int orientation = getContext().getResources().getConfiguration().orientation;
+//        if (orientation == Configuration.ORIENTATION_PORTRAIT) {
+//            Picasso.with(getContext()).load(movie.getPosterPath())
+//                    .fit().centerCrop()
+//                    .placeholder(R.drawable.loadingsmall)
+//                    .error(R.drawable.error)
+//                    .into(viewHolder.movieImage);
+//        } else if (orientation == Configuration.ORIENTATION_LANDSCAPE) {
+//            Picasso.with(getContext()).load(movie.getBackgroundPath())
+//                    .fit().centerCrop()
+//                    .placeholder(R.drawable.loadingsmall)
+//                    .error(R.drawable.error)
+//                    .into(viewHolder.movieImage);
+//        }
 
         // check if existing view is getting reused
         return convertView;
@@ -124,8 +153,9 @@ public class MovieArrayAdapter extends ArrayAdapter<Movie> {
     private View getInflatedLayoutForType(int type) {
         LayoutInflater inflater  = LayoutInflater.from(getContext());
 
+        Log.d("type", "type: " + Integer.toString(type));
         if (type == 0 ) {
-            return inflater.inflate(R.layout.item_movie, null);
+            return inflater.inflate(R.layout.item_movie_toprated, null);
         } else  if (type == 1) {
             return inflater.inflate(R.layout.item_movie, null);
         }
