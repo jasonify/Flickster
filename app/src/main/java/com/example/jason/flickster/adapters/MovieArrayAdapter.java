@@ -81,7 +81,7 @@ public class MovieArrayAdapter extends ArrayAdapter<Movie> {
         }
 
         if (viewHolder.title != null ) {
-            viewHolder.title.setText(movie.getOriginalTitle());
+            viewHolder.title.setText( Integer.toString(position) + movie.getOriginalTitle() );
         }
         if (viewHolder.overview != null) {
             viewHolder.overview.setText(movie.getOverview());
