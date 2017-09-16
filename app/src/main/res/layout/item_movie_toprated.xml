@@ -19,11 +19,11 @@
         app:srcCompat="@drawable/loadingsmall" />
 
     <RelativeLayout
+        android:id="@+id/rlMainContainer"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
-        android:background="#959954e9"
         android:layout_alignParentTop="true"
         android:visibility="visible">
 
@@ -31,28 +31,28 @@
             android:id="@+id/tvTitle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
             android:layout_marginTop="31dp"
             android:ems="10"
             android:inputType="textPersonName"
-            android:text="Name"
-            android:layout_alignParentTop="true"
-            android:layout_alignParentRight="true"
-            android:layout_alignParentEnd="true"
-            android:layout_alignParentLeft="true"
-            android:layout_alignParentStart="true" />
+            android:text="Name" />
 
         <EditText
             android:id="@+id/tvOverview"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
             android:layout_alignParentLeft="true"
+            android:layout_alignParentRight="true"
             android:layout_alignParentStart="true"
             android:layout_below="@+id/tvTitle"
             android:layout_marginTop="19dp"
             android:ems="10"
-            android:inputType="textMultiLine"
-            android:layout_alignParentRight="true"
-            android:layout_alignParentEnd="true" />
+            android:inputType="textMultiLine" />
 
         <ImageView
             android:id="@+id/ivMovieImage"
