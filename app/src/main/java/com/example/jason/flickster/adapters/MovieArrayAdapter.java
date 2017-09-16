@@ -63,23 +63,6 @@ public class MovieArrayAdapter extends ArrayAdapter<Movie> {
             convertView.setTag(viewHolder);
         } else {
             viewHolder = (ViewHolder) convertView.getTag();
-
-            // Check if convertView is of same type as we are loading now:
-            if (viewType != viewHolder.viewType) {
-                // Need to change out views:
-                viewHolder = new ViewHolder();
-
-                convertView = getInflatedLayoutForType(viewType);
-                // TODO: refactor this is repeated code!
-                viewHolder.title = (TextView) convertView.findViewById(R.id.tvTitle);
-                viewHolder.overview = (EditText) convertView.findViewById(R.id.tvOverview);
-                viewHolder.movieImage =  (ImageView) convertView.findViewById(R.id.ivMovieImage);
-                viewHolder.postertImage = (ImageView) convertView.findViewById(R.id.ivPosterImage);
-
-
-                viewHolder.viewType = viewType;
-                convertView.setTag(viewHolder);
-            }
         }
 
         if (viewHolder.title != null ) {
