@@ -112,6 +112,9 @@ public class MovieArrayAdapter extends ArrayAdapter<Movie> {
 
 
 
+
+        //-----------------------------------------------------------------
+
         // Loading different image depending on if landscape or portrait
 //        int orientation = getContext().getResources().getConfiguration().orientation;
 //        if (orientation == Configuration.ORIENTATION_PORTRAIT) {
@@ -137,8 +140,8 @@ public class MovieArrayAdapter extends ArrayAdapter<Movie> {
 
     @Override
     public int getViewTypeCount() {
-        // return 2;
-        return super.getViewTypeCount();
+         return 2;
+//        return super.getViewTypeCount();
     }
 
     @Override
