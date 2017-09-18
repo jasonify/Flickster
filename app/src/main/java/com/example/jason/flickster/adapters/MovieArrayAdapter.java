@@ -1,9 +1,6 @@
 package com.example.jason.flickster.adapters;
 
 import android.content.Context;
-import android.graphics.Bitmap;
-import android.graphics.drawable.BitmapDrawable;
-import android.graphics.drawable.Drawable;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.util.Log;
@@ -19,9 +16,10 @@ import android.widget.TextView;
 import com.example.jason.flickster.R;
 import com.example.jason.flickster.models.Movie;
 import com.squareup.picasso.Picasso;
-import com.squareup.picasso.Target;
 
 import java.util.List;
+
+import static com.example.jason.flickster.R.id.ivPosterImage;
 
 /**
  * Created by jason on 9/12/17.
@@ -41,6 +39,7 @@ public class MovieArrayAdapter extends ArrayAdapter<Movie> {
         ImageView movieImage;
         RelativeLayout mainContainer;
         ImageView postertImage;
+        ImageView bgPoster;
         int viewType;
 
         // TODO: viewholder for photo?
@@ -63,8 +62,14 @@ public class MovieArrayAdapter extends ArrayAdapter<Movie> {
             viewHolder.title = (TextView) convertView.findViewById(R.id.tvTitle);
             viewHolder.overview = (EditText) convertView.findViewById(R.id.tvOverview);
             viewHolder.movieImage =  (ImageView) convertView.findViewById(R.id.ivMovieImage);
-            viewHolder.postertImage = (ImageView) convertView.findViewById(R.id.ivPosterImage);
+            viewHolder.postertImage = (ImageView) convertView.findViewById(ivPosterImage);
             viewHolder.mainContainer = (RelativeLayout) convertView.findViewById(R.id.rlMainContainer);
+
+            viewHolder.bgPoster = (ImageView) convertView.findViewById(R.id.ivBackground);
+
+
+
+
             viewHolder.viewType = viewType;
 
             convertView.setTag(viewHolder);
@@ -73,31 +78,31 @@ public class MovieArrayAdapter extends ArrayAdapter<Movie> {
         }
 
         // https://stackoverflow.com/questions/30343980/how-to-set-background-image-to-activity-layout-using-picasso-library-in-android
-        if (viewHolder.mainContainer != null ) {
-             viewHolder.mainContainer.setBackgroundResource(R.drawable.error);
-
-            final ViewHolder viewHolderInner = viewHolder;
-
-
-            Target target = new Target() {
-                @Override
-                public void onBitmapLoaded(Bitmap bitmap, Picasso.LoadedFrom from) {
-                    //if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
-                    viewHolderInner.mainContainer.setBackground(new BitmapDrawable(getContext().getResources(), bitmap));
-                  // }
-                }
-
-                @Override
-                public void onBitmapFailed(final Drawable errorDrawable) {
-                }
-
-                @Override
-                public void onPrepareLoad(final Drawable placeHolderDrawable) {
-                }
-            };
-
-            Picasso.with(getContext()).load(movie.getBackgroundPath()).into(target);
-        }
+//        if (viewHolder.mainContainer != null ) {
+//             viewHolder.mainContainer.setBackgroundResource(R.drawable.error);
+//
+//            final ViewHolder viewHolderInner = viewHolder;
+//
+//
+//            Target target = new Target() {
+//                @Override
+//                public void onBitmapLoaded(Bitmap bitmap, Picasso.LoadedFrom from) {
+//                    //if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
+//                    viewHolderInner.mainContainer.setBackground(new BitmapDrawable(getContext().getResources(), bitmap));
+//                  // }
+//                }
+//
+//                @Override
+//                public void onBitmapFailed(final Drawable errorDrawable) {
+//                }
+//
+//                @Override
+//                public void onPrepareLoad(final Drawable placeHolderDrawable) {
+//                }
+//            };
+//
+//            Picasso.with(getContext()).load(movie.getBackgroundPath()).into(target);
+//        }
 
         if (viewHolder.title != null ) {
             viewHolder.title.setText( Integer.toString(position) +  " - " + movie.getOriginalTitle() );
@@ -106,8 +111,23 @@ public class MovieArrayAdapter extends ArrayAdapter<Movie> {
             viewHolder.overview.setText(movie.getOverview());
         }
 
+
+        if (   viewHolder.bgPoster != null ) {
+            viewHolder.bgPoster.setImageResource(0);
+
+
+
+            Picasso.with(getContext()).load(movie.getBackgroundPath())
+                    .fit().centerCrop()
+                    .placeholder(R.drawable.loadingsmall)
+                    .error(R.drawable.error)
+                    .into(viewHolder.bgPoster);
+        }
+
         if (   viewHolder.postertImage != null ) {
             viewHolder.postertImage.setImageResource(0);
+
+
 
             Picasso.with(getContext()).load(movie.getBackgroundPath())
                     .fit().centerCrop()
