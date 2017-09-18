@@ -1,8 +1,8 @@
-# Project 1 - *Name of App Here*
+# Project 1 - Flickster 
 
-**Name of your app** shows the latest movies currently playing in theaters. The app utilizes the Movie Database API to display images and basic information about these movies to the user.
+Flickster  shows the latest movies currently playing in theaters. The app utilizes the Movie Database API to display images and basic information about these movies to the user.
 
-Time spent: **X** hours spent in total
+Time spent: ~10-11  hours spent in total
 
 ## User Stories
 
@@ -21,7 +21,7 @@ The following **optional** features are implemented:
 The following **bonus** features are implemented:
 
 * [ ] Allow user to view details of the movie including ratings and popularity within a separate activity or dialog fragment.
-* [ ] When viewing a popular movie (i.e. a movie voted for more than 5 stars) the video should show the full backdrop image as the layout.  Uses [Heterogenous ListViews](http://guides.codepath.com/android/Implementing-a-Heterogenous-ListView) or [Heterogenous RecyclerView](http://guides.codepath.com/android/Heterogenous-Layouts-inside-RecyclerView) to show different layouts.
+* [x] When viewing a popular movie (i.e. a movie voted for more than 5 stars) the video should show the full backdrop image as the layout.  Uses [Heterogenous ListViews](http://guides.codepath.com/android/Implementing-a-Heterogenous-ListView) or [Heterogenous RecyclerView](http://guides.codepath.com/android/Heterogenous-Layouts-inside-RecyclerView) to show different layouts.
 * [ ] Allow video trailers to be played in full-screen using the YouTubePlayerView.
     * [ ] Overlay a play icon for videos that can be played.
     * [ ] More popular movies should start a separate activity that plays the video immediately.
@@ -32,7 +32,7 @@ The following **bonus** features are implemented:
 
 The following **additional** features are implemented:
 
-* [ ] List anything else that you can get done to improve the app functionality!
+* [x List anything else that you can get done to improve the app functionality!
 
 [x] changed Actionbar colors
 ## Video Walkthrough
