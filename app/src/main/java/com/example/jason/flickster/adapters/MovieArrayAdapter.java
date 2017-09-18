@@ -90,7 +90,7 @@ public class MovieArrayAdapter extends ArrayAdapter<Movie> {
         if (   viewHolder.postertImage != null ) {
             viewHolder.postertImage.setImageResource(0);
             Picasso.with(getContext()).load(movie.getBackgroundPath())
-                    .centerCrop()
+                    .fit().centerCrop()
                     .placeholder(R.drawable.loadingsmall)
                     .error(R.drawable.error)
                     .into(viewHolder.postertImage);
