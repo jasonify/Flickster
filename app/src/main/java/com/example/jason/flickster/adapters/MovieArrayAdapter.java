@@ -3,7 +3,6 @@ package com.example.jason.flickster.adapters;
 import android.content.Context;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -24,11 +23,6 @@ import static com.example.jason.flickster.R.id.ivPosterImage;
 /**
  * Created by jason on 9/12/17.
  */
-
-
-// TODO Heterogenous views
-    // [ ] 2 view, one with a bg poster movies with > 5 stars (prop named: vote_average)
-    // [ ] create the layout type  with background
 
 
 public class MovieArrayAdapter extends ArrayAdapter<Movie> {
@@ -77,46 +71,16 @@ public class MovieArrayAdapter extends ArrayAdapter<Movie> {
             viewHolder = (ViewHolder) convertView.getTag();
         }
 
-        // https://stackoverflow.com/questions/30343980/how-to-set-background-image-to-activity-layout-using-picasso-library-in-android
-//        if (viewHolder.mainContainer != null ) {
-//             viewHolder.mainContainer.setBackgroundResource(R.drawable.error);
-//
-//            final ViewHolder viewHolderInner = viewHolder;
-//
-//
-//            Target target = new Target() {
-//                @Override
-//                public void onBitmapLoaded(Bitmap bitmap, Picasso.LoadedFrom from) {
-//                    //if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
-//                    viewHolderInner.mainContainer.setBackground(new BitmapDrawable(getContext().getResources(), bitmap));
-//                  // }
-//                }
-//
-//                @Override
-//                public void onBitmapFailed(final Drawable errorDrawable) {
-//                }
-//
-//                @Override
-//                public void onPrepareLoad(final Drawable placeHolderDrawable) {
-//                }
-//            };
-//
-//            Picasso.with(getContext()).load(movie.getBackgroundPath()).into(target);
-//        }
-
         if (viewHolder.title != null ) {
-            viewHolder.title.setText( Integer.toString(position) +  " - " + movie.getOriginalTitle() );
+            viewHolder.title.setText( movie.getOriginalTitle() );
         }
+
         if (viewHolder.overview != null) {
             viewHolder.overview.setText(movie.getOverview());
         }
 
-
         if (   viewHolder.bgPoster != null ) {
             viewHolder.bgPoster.setImageResource(0);
-
-
-
             Picasso.with(getContext()).load(movie.getBackgroundPath())
                     .fit().centerCrop()
                     .placeholder(R.drawable.loadingsmall)
@@ -126,11 +90,8 @@ public class MovieArrayAdapter extends ArrayAdapter<Movie> {
 
         if (   viewHolder.postertImage != null ) {
             viewHolder.postertImage.setImageResource(0);
-
-
-
             Picasso.with(getContext()).load(movie.getBackgroundPath())
-                    .fit().centerCrop()
+                    .centerCrop()
                     .placeholder(R.drawable.loadingsmall)
                     .error(R.drawable.error)
                     .into(viewHolder.postertImage);
@@ -146,42 +107,32 @@ public class MovieArrayAdapter extends ArrayAdapter<Movie> {
                     .into(viewHolder.movieImage);
         }
 
-
-
-
         return convertView;
     }
 
     // Heterogenous Views
-
-
     @Override
     public int getViewTypeCount() {
          return 2;
-//        return super.getViewTypeCount();
     }
 
     @Override
     public int getItemViewType(int position) {
         Movie movie = getItem(position);
         if (movie.getRating() >= 5.0) {
-            return 0
-;        } else {
+            return 0;
+        } else {
             return 1;
         }
-        // return super.getItemViewType(position);
     }
 
     private View getInflatedLayoutForType(int type) {
         LayoutInflater inflater  = LayoutInflater.from(getContext());
-
-        Log.d("type", "type: " + Integer.toString(type));
         if (type == 0 ) {
             return inflater.inflate(R.layout.item_movie_toprated, null);
         } else  if (type == 1) {
             return inflater.inflate(R.layout.item_movie, null);
         }
-
         return null;
     }
 }
