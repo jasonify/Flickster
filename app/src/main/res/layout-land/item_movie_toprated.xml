@@ -12,7 +12,7 @@
         android:layout_alignParentTop="true"
         android:alpha="0.2"
         android:scaleType="center"
-        app:srcCompat="@drawable/loading" />
+        app:srcCompat="@drawable/loadingsmall" />
 
 
     <TextView
