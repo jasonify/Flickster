@@ -7,7 +7,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
-import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
@@ -54,7 +53,7 @@ public class MovieArrayAdapter extends ArrayAdapter<Movie> {
 
             convertView = getInflatedLayoutForType(viewType);
             viewHolder.title = (TextView) convertView.findViewById(R.id.tvTitle);
-            viewHolder.overview = (EditText) convertView.findViewById(R.id.tvOverview);
+            viewHolder.overview = (TextView) convertView.findViewById(R.id.tvOverview);
             viewHolder.movieImage =  (ImageView) convertView.findViewById(R.id.ivMovieImage);
             viewHolder.postertImage = (ImageView) convertView.findViewById(ivPosterImage);
             viewHolder.mainContainer = (RelativeLayout) convertView.findViewById(R.id.rlMainContainer);

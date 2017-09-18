@@ -24,7 +24,7 @@
     </RelativeLayout>
 
     <EditText
-        android:id="@+id/tvTitle"
+        android:id="@+id/tvOverview"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
@@ -41,11 +41,11 @@
         android:id="@+id/tvOverview"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/tvTitle"
+        android:layout_alignLeft="@+id/tvOverview"
         android:layout_alignParentEnd="true"
         android:layout_alignParentRight="true"
-        android:layout_alignStart="@+id/tvTitle"
-        android:layout_below="@+id/tvTitle"
+        android:layout_alignStart="@+id/tvOverview"
+        android:layout_below="@+id/tvOverview"
         android:layout_marginTop="29dp"
         android:ems="10"
         android:inputType="textMultiLine" />

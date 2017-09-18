@@ -19,7 +19,7 @@
         android:layout_marginTop="0dp"
         tools:src="@mipmap/ic_launcher" />
 
-    <EditText
+    <TextView
         android:id="@+id/tvTitle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -34,7 +34,7 @@
         android:layout_alignParentEnd="true"
         android:layout_alignParentTop="true" />
 
-    <EditText
+    <TextView
         android:id="@+id/tvOverview"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -44,6 +44,7 @@
         android:layout_below="@+id/tvTitle"
         android:layout_toRightOf="@+id/ivMovieImage"
         android:layout_marginLeft="22dp"
+        android:layout_marginTop="20dp"
         android:layout_marginStart="22dp"
         android:layout_alignParentRight="true"
         android:layout_alignParentEnd="true" />
